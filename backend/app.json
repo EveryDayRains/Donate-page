@@ -8,7 +8,7 @@
     "socket.io",
     "mongodb"
   ],
-  "repository": "https://github.com/mrlivixx/donate-page",
+  "repository": "https://github.com/MrLivixx/Donate-page/blob/main/backend",
   "env": {
     "DB_URL": {
       "description": "Ссылка на базу данных mongodb",
