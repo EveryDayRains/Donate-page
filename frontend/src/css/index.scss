@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+    --element-color: rgba(9, 9, 9, 0.25);
+    --element-border: 2px solid rgba(21, 21, 21, 0.75);
+    --border-radius: 25px;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    font-family: 'Montserrat', sans-serif;
+    color: inherit;
+}
+
+html{
+    background-color: #121212;
+    background-image: url('/wrapped.svg');
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 75%;
+}
+
+#app, html {
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    color: #FDFDFD;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    line-height: 1.5;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+}
+
+#app{
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 1100px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.transition{
+    transition: .2s
+}
+
+.small{
+    font-size: 16px;
+    color: #5e5e5e;
+}
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    background: rgba(18, 18, 18, 0.06);
+    border: 2px solid rgba(105, 105, 105, 0.3);
+    padding: 30px;
+    -webkit-backdrop-filter: blur(42px);
+    backdrop-filter: blur(42px);
+    width: 300px;
+    border-radius: 25px;
+}
+
+.loader {
+    margin-bottom: 20px;
+}
+
+.header-container {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.page-title {
+    font-size: 55px;
+    font-weight: 600;
+    animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation-delay: 1.7s;
+}
+.page-title-404 {
+    font-size: 55px;
+    font-weight: 600;
+}
+
+.page-subheading {
+    font-size: 28px;
+    animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation-delay: 1.8s;
+}
+
+.heart-emoji {
+    width: 27px;
+    vertical-align: baseline;
+    margin-left: 5px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation-delay: 1.8s;
+}
+
+.login {
+    box-sizing: border-box;
+    -webkit-backdrop-filter: blur(42px);
+    backdrop-filter: blur(42px);
+    border-radius: 25px;
+    width: 100%;
+    padding: 17px 30px 14px;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    outline: none
+}
+
+.discord {
+    background: rgba(88, 101, 242, 0.15);
+    border: 2px solid #5865F2;
+}
+
+.vk {
+    background: rgba(39, 135, 245, 0.15);
+    border: 2px solid #2787F5;
+}
+
+.login svg {
+    width: 32px;
+}
+
+.login:hover {
+    background: rgb(88 101 242 / 38%);
+    transition: .2s;
+}
+
+.vk:hover {
+    background: rgba(39, 135, 245, 0.38);
+}
+
+
+.donate-table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.main-table {
+    background: rgba(18, 18, 18, 0.06);
+    border: 2px solid rgba(105, 105, 105, 0.3);
+    -webkit-backdrop-filter: blur(42px);
+    backdrop-filter: blur(42px);
+    border-radius: 25px;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    padding: 22px 28px;
+    border-spacing: 0;
+    animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation-delay: 1.3s;
+}
+
+td, th {
+    padding: 27px 22px;
+}
+
+td, th {
+    border-right: 1px solid rgba(105, 105, 105, 0.3);
+    border-left: 1px solid rgba(105, 105, 105, 0.3);
+    border-bottom: 2px solid rgba(105, 105, 105, 0.3);
+}
+
+td:first-child, th:first-child {
+    border-left: 0;
+}
+
+td:last-child, th:last-child {
+    border-right: 0;
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+thead tr th {
+    font-weight: 600;
+    font-weight: 600;
+    padding: 7px 22px 16px;
+}
+
+.donate-container {
+    margin-bottom: 50px;
+}
+
+.form-comment {
+    width: 100%;
+}
+
+.donate-form {
+    background: rgba(18, 18, 18, 0.06);
+    border: 2px solid rgba(105, 105, 105, 0.3);
+    -webkit-backdrop-filter: blur(42px);
+    backdrop-filter: blur(42px);
+    border-radius: 25px;
+    width: 100%;
+    font-size: 24px;
+    padding: 23px 35px;
+    animation: fade-in 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation-delay: 1.2s;
+}
+
+.input-flex {
+    display: flex;
+    gap: 70px;
+}
+
+.form-heading {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.form-loggined-as {
+    margin-bottom: 30px;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    width: 50px;
+}
+
+.user-username {
+    font-weight: 500;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.form-input {
+    background: #202020;
+    border: 2px solid rgba(105, 105, 105, 0.3);
+    font-family: inherit;
+    color: inherit;
+    font-size: 22px;
+    border-radius: 25px;
+    padding: 15px 25px 14px;
+    font-weight: 500;
+    outline: none;
+}
+
+.flex-20 {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-currency {
+    font-weight: 500;
+}
+
+.or {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #6e6e6e;
+}
+
+.form-checkout {
+    box-sizing: border-box;
+    -webkit-backdrop-filter: blur(42px);
+    backdrop-filter: blur(42px);
+    border-radius: 25px;
+    width: 100%;
+    padding: 15px 25px 14px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+    background: rgba(56, 126, 110, 0.25);
+    border: 2px solid #387E6E;
+    color: inherit;
+    font-family: inherit;
+}
+
+.donate-top {
+    margin-bottom: 30px;
+}
+
+.donate-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.comment {
+    width: 100%;
+}
+
+.form-checkout:hover {
+    background: rgba(56, 126, 110, 0.55);
+}
+
+@media screen and (max-width: 1076px) {
+    table thead {
+        display: none
+    }
+
+    .main-table {
+        padding: 15px 15px;
+    }
+
+    table tr {
+        display: block;
+        border-bottom: 2px solid rgba(105, 105, 105, 0.3);
+    }
+
+    table td {
+        display: block;
+        text-align: right;
+        font-size: 16px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    tr, td {
+        border: 0;
+    }
+
+    td, th {
+        padding: 15px 24px;
+    }
+
+    table tr:last-child {
+        border-bottom: 0
+    }
+
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 700
+    }
+
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .login {
+        line-height: 1.8;
+        text-align: center;
+        padding: 10px 20px 9px;
+        justify-content: center;
+    }
+
+    .login svg {
+        display: none;
+    }
+
+    .header-container, .donate-container {
+        margin-bottom: 40px;
+    }
+
+    #app {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .header-container {
+        margin-top: 20px;
+    }
+
+    .page-title {
+        font-size: 45px;
+        margin-bottom: 8px;
+    }
+
+    .page-subheading {
+        font-size: 25px;
+    }
+
+    .heart-emoji {
+        width: 22px;
+    }
+
+    .donate-form {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px 34px 34px;
+    }
+}
+
+
+@media screen and (max-width: 942px) {
+    .donate-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .or{
+        display: none;
+    }
+
+    .input-flex{
+        gap: 30px;
+        flex-direction: column;
+    }
+
+    .form-input{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 358px) {
+    .form-currency{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 508px) {
+    .full{
+        display: none;
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
