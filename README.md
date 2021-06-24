@@ -5,14 +5,14 @@
 Ваша таблица донаторов которая автоматически обновляется.
 
 ## Установка
-[Как установить Front-end часть](https://)
-<br>[Как установить Back-end часть](https://)
+[Как установить Front-end часть](https://github.com/MrLivixx/Donate-page/tree/main/frontend)
+<br>[Как установить Back-end часть](https://github.com/MrLivixx/Donate-page/tree/main/backend)
 
 ## Зависимости проекта
 `vue` - Js фреймворк для Front-end.
-`socket.io` - Обмен данными между Front-end и Back-end частями сайта.
-`fastify` - Используется в качестве веб-сервера в Back-end части.
-`mongoose` - Для использования базы данных MongoBD, хранения донатов и сессий
-`jsonwebtoken` - Используется для подписания токенов, [подробнее](https://jwt.io)
+<br>`socket.io` - Обмен данными между Front-end и Back-end частями сайта.
+<br>`fastify` - Используется в качестве веб-сервера в Back-end части.
+<br>`mongoose` - Для использования базы данных MongoBD, хранения донатов и сессий
+<br>`jsonwebtoken` - Используется для подписания токенов, [подробнее](https://jwt.io)
 # Contributing
 Мы приветствуем всех желающих которые хотят внести вклад в данный проект.
