@@ -22,3 +22,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+backend/dist
+frontend/dist
