@@ -7,7 +7,8 @@
     "build-dev": "tsc --build tsconfig.json --w",
     "build": "tsc --build tsconfig.json",
     "dev": "nodemon ./dist/index",
-    "start": "node ./dist/index"
+    "start": "node ./dist/index",
+    "startandbuild": "npm i && tsc --build tsconfig.json && node ./dist/index"
   },
   "_moduleAliases": {
     "@": "dist/src"
