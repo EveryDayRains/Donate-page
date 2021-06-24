@@ -5,8 +5,8 @@
 Ваша таблица донаторов которая автоматически обновляется.
 
 ## Установка
-[Как установить Front-end часть](https://)
-<br>[Как установить Back-end часть](https://)
+[Как установить Front-end часть](https://github.com/MrLivixx/Donate-page/tree/main/frontend)
+<br>[Как установить Back-end часть](https://github.com/MrLivixx/Donate-page/tree/main/backend)
 
 ## Зависимости проекта
 `vue` - Js фреймворк для Front-end.
