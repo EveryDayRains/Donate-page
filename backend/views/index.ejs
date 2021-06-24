@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ru">
+<body>
+<script type="text/javascript">
+    if (window.opener) {
+        window.opener.postMessage({ token: '<%- JSON.stringify(token) %>' }, '*');
+        window.close();
+    }
+</script>
+</body>
+</html>

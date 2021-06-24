@@ -1,0 +1,63 @@
+{
+  "name": "donate-page-backend",
+  "description": "backend часть сайта",
+  "keywords": [
+    "typescript",
+    "ts",
+    "nodejs",
+    "socket.io",
+    "mongodb"
+  ],
+  "repository": "https://github.com/mrlivixx/donate-page",
+  "env": {
+    "DB_URL": {
+      "description": "Ссылка на базу данных mongodb",
+      "value": "db url"
+    },
+    "DISCORD_CLIENT_ID": {
+      "description": "CLIENT ID вашего Discord приложения",
+      "value": "client id"
+    },
+    "DISCORD_REDIRECT_URL": {
+      "description": "Ссылка после удачной авторизации",
+      "value": "https://api.donate.mrlivixx.me/oauth2/discord/callback"
+    },
+    "DISCORD_CLIENT_SECRET": {
+      "description": "Client secret вашего приложения",
+      "value": "asgdgedred"
+    },
+    "VK_CLIENT_ID": {
+      "description": "ID вашего приложение в ВКонтакте",
+      "value": "7873175"
+    },
+    "VK_CLIENT_SECRET": {
+      "description": "Защищённый ключ приложения",
+      "value": "O7EVlvvJJOGZHoWdIiym"
+    },
+    "VK_REDIRECT_URL": {
+      "description": "Ссылка после удачной авторизации",
+      "value": "https://api.donate.mrlivixx.me/oauth2/vk/callback"
+    },
+    "VK_API_KEY": {
+      "description": "Сервисный ключ доступа вашего приложения",
+      "value": "d70304c7d70304c7d70304c745d77b2650dd703d70304c7b7bfbc98bf6d58ea6b2e9873"
+    },
+    "JWT_SECRET": {
+      "description": "Случайное значение с https://randomkeygen.com/ для работы авторизации",
+      "value": "CHANGE THIS!"
+    },
+    "DA_SECRET": {
+      "description": "Секретный ключ с DonationAlerts",
+      "value": "342f423"
+    },
+    "DA_SECRET": {
+      "description": "Код темы QIWI",
+      "value": "Nykyta-S0FqLeU_kv"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

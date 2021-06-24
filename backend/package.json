@@ -1,0 +1,43 @@
+{
+  "name": "donate-page-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-dev": "tsc --build tsconfig.json --w",
+    "build": "tsc --build tsconfig.json",
+    "dev": "nodemon ./dist/index",
+    "start": "node ./dist/index"
+  },
+  "_moduleAliases": {
+    "@": "dist/src"
+  },
+  "dependencies": {
+    "@qiwi/bill-payments-node-js-sdk": "^3.2.1",
+    "@types/socket.io": "^3.0.2",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "ejs": "^2.7.4",
+    "fastify": "^3.15.1",
+    "fastify-cors": "^6.0.1",
+    "fastify-rate-limit": "^5.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.12.9",
+    "node-fetch": "^2.6.1",
+    "point-of-view": "^4.14.0",
+    "socket.io": "^4.1.1",
+    "socket.io-client": "^2.3.0",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.6",
+    "@types/node-fetch": "^2.5.10",
+    "@types/socket.io-client": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "nodemon": "^2.0.7"
+  }
+}
