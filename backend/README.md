@@ -8,7 +8,7 @@ $ git clone https://github.com/MrLivixx/Donate-page.git
 $ npm i 
 ```
 Или установите бекенд часть проекта на хероку по нажатию одной кнопки!
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MrLivixx/donate-page/tree/main/backend)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MrLivixx/donate-page)
 - Смените название файла .env.example на .env и подставьте свои значения
 <br>Пример:
 ```dotenv
