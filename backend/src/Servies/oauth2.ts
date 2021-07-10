@@ -7,8 +7,8 @@ import axios, {AxiosResponse} from "axios";
 import { URLSearchParams } from "url";
 
 class Oauth2 {
-    private db: Model<Tokens>;
-    constructor(db: Model<Tokens>) {
+    private db: Model<Tokens | unknown>;
+    constructor(db: Model<Tokens | unknown>) {
         this.db = db;
     }
     async Discordlogin(req: FastifyRequest,res: FastifyReply) : Promise<void> {
@@ -89,6 +89,7 @@ class Oauth2 {
                         const tokendata = await this.db.findOne({userid: data?.id.toString(),exp: data?.exp})
                         const response: AxiosResponse = await axios.get('https://discord.com/api/users/@me', {
                             headers: {
+                                //@ts-ignore
                                 authorization: `Bearer ${tokendata?.accessToken}`
                             }
                         })

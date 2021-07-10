@@ -51,12 +51,15 @@ class ApiWorker {
         });
 
         //DONATIONALERTS
-        if(process.env.DA_SECRET) await new DonationAlertsWatcher(donations, tokens).init()
+        if(process.env.DA_SECRET) { // @ts-ignore
+            await new DonationAlertsWatcher(donations, tokens).init()
+        }
         //SOCKET.IO
         this.io.on('connection', async (socket: Socket) => {
             socket.send('Connected!');
             console.log('Site connected!');
             socket.on('donations',async () => {
+                //@ts-ignore
                 socket.emit('donations', await donations.find().sort({'time': 'desc'}).then((x: Model<Donations>) => x));
             });
         });
