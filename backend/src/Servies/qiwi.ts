@@ -1,6 +1,6 @@
 import QiwiBillPaymentsAPI from "@qiwi/bill-payments-node-js-sdk";
 import { FastifyRequest, FastifyReply } from "fastify";
-import axios, {AxiosError, AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Model } from "mongoose";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
@@ -8,9 +8,9 @@ import jwt from "jsonwebtoken";
 
 class Qiwi {
     private qiwi: QiwiBillPaymentsAPI;
-    private db: Model<Donations>;
-    private tokens: Model<Tokens>;
-    constructor(db: Model<Donations>, tokens: Model<Tokens>) {
+    private db: Model<Donations | unknown>;
+    private tokens: Model<Tokens | unknown>;
+    constructor(db: Model<Donations | unknown>, tokens: Model<Tokens | unknown>) {
         this.qiwi = new QiwiBillPaymentsAPI(process.env.QIWI_SECRET_KEY!);
         this.db = db;
         this.tokens = tokens;
@@ -70,6 +70,7 @@ class Qiwi {
                         const tokendata = await this.tokens.findOne({userid: data?.id.toString(), exp: data?.exp})
                         const response: AxiosResponse = await axios.get('https://discord.com/api/users/@me',{
                             headers: {
+                                //@ts-ignore
                                 authorization: `Bearer ${tokendata?.accessToken}`
                             }
                         }).catch(() => {return res.status(403).send({code: 403, message: 'Forbidden'})});

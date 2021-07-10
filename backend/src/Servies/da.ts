@@ -10,10 +10,10 @@ import axios, {AxiosResponse} from "axios";
 const hashes = new Map()
 class DonationAlertsWatcher {
     private io: Socket;
-    private db: Model<Donations>;
-    private tokens: Model<Tokens>
+    private db: Model<Donations | unknown>;
+    private tokens: Model<Tokens | unknown>
 
-    constructor(db: Model<Donations>, tokens: Model<Tokens>) {
+    constructor(db: Model<Donations | unknown>, tokens: Model<Tokens | unknown>) {
         this.db = db;
         this.tokens = tokens;
         //@ts-ignore
@@ -47,6 +47,7 @@ class DonationAlertsWatcher {
                              }).then(x => x)
                              const response: AxiosResponse | null = await axios.get('https://discord.com/api/users/@me', {
                                  headers: {
+                                     // @ts-ignore
                                      authorization: `Bearer ${tokendata?.accessToken}`
                                  }
                              }).catch(() => {
