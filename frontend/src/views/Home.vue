@@ -256,6 +256,7 @@ export default {
           'Authorization': localStorage.getItem('token')
         }
       });
+      if(info.status !== 200) return this.logout();
       const { data, type } = await info?.json();
       if (!type) return;
       this.user = data;
