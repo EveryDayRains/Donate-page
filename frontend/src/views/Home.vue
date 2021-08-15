@@ -246,7 +246,8 @@ export default {
       if (typeof message !== 'object') return;
       if (!message['data']) return;
       if (!message.data['token']) return;
-      localStorage.setItem('token', JSON.parse(message.data.token));
+      if (JSON.parse(message.data.token)) localStorage.setItem('token', JSON.parse(message.data.token));
+      else return;
     },
     async getUserData() {
       const info = await fetch('https://'+ url + '/oauth2/user', {
