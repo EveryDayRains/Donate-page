@@ -14,7 +14,10 @@ class Oauth2 {
     async Discordlogin(req: FastifyRequest,res: FastifyReply) : Promise<void> {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        const code = req.query?.code;
+        const { code, error }  = req.query;
+        if(error == "access_denied") return res.view('index.ejs', {
+                token: null
+            });
         if(!code) return res.redirect('/oauth2/discord/authorize');
         const response: AxiosResponse  = await axios.post('https://discord.com/api/oauth2/token',
             new URLSearchParams({
