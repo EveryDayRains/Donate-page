@@ -96,7 +96,8 @@ class Oauth2 {
                                 authorization: `Bearer ${tokendata?.accessToken}`
                             }
                         })
-                        if(!response.data.id) return res.send({code:404, message: "Not found"})
+                        if(!response.data.id) return res.send({code:404, message: "Not found"});
+                        if(response.data.code === 0) return res.send({code:404, message: "Not found"});
                         res.status(200).send({type: 'discord', data: response.data})
                     }
 
