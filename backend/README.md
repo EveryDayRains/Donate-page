@@ -38,7 +38,7 @@ QIWI_SECRET_KEY=******
 #QIWI THEME
 QIWI_THEME=Nykyta-S0FqLeU_kv
 ```
-###Коротко о том что за значения надо внести в .env
+### Коротко о том что за значения надо внести в .env
 
 - `DB_URL` - Ссылка на базу данных mongodb. Как создать базу данных можете прочитать в моём другом гайде [здесь](https://github.com/sqdsh/simple-discord-bot/blob/gh-pages/index.md#прочее)
 - `PORT` - Порт веб сервера, для работы на своей VPS/VDS машине, использовать прокси как nginx и apache2. Если heroku/glitch оставить пустым

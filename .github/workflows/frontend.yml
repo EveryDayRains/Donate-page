@@ -1,0 +1,27 @@
+name: Frontend tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13
+      - name: Install dependencies for frontend
+        run: cd frontend && npm i
+      - name: Run list
+        run: cd frontend && npm run lint
+      - name: Run build
+        run: cd frontend && npm run build

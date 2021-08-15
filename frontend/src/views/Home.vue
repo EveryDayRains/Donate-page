@@ -184,9 +184,10 @@ export default {
     },
     async CreateBill() {
       if (!this.sum) return alert('Вы не указали сумму!');
-      if (!this.comment) return alert('Вы не указали комментарий!')
-      if (this.sum < 10) return alert('Минимальная сумма пополнения 10 руб.')
-      if (this.sum >= 15000) return alert('Максимальная сумма пополнения 10 руб.')
+      if (!this.comment) return alert('Вы не указали комментарий!');
+      if (this.sum < 10) return alert('Минимальная сумма пополнения 10 руб.');
+      if (this.sum >= 15000) return alert('Максимальная сумма пополнения 10 руб.');
+      if (this.comment.length >= 150) return alert('Максимальная длина коментария 150 символов.');
       const data = await (await fetch(`https://${url}/qiwi/create`, {
         method: 'POST',
         headers: {
@@ -245,7 +246,8 @@ export default {
       if (typeof message !== 'object') return;
       if (!message['data']) return;
       if (!message.data['token']) return;
-      localStorage.setItem('token', JSON.parse(message.data.token));
+      if (JSON.parse(message.data.token)) localStorage.setItem('token', JSON.parse(message.data.token));
+      else return;
     },
     async getUserData() {
       const info = await fetch('https://'+ url + '/oauth2/user', {
@@ -254,6 +256,7 @@ export default {
           'Authorization': localStorage.getItem('token')
         }
       });
+      if(info.status !== 200) return this.logout();
       const { data, type } = await info?.json();
       if (!type) return;
       this.user = data;

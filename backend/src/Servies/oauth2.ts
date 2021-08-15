@@ -7,14 +7,17 @@ import axios, {AxiosResponse} from "axios";
 import { URLSearchParams } from "url";
 
 class Oauth2 {
-    private db: Model<Tokens>;
-    constructor(db: Model<Tokens>) {
+    private db: Model<Tokens | unknown>;
+    constructor(db: Model<Tokens | unknown>) {
         this.db = db;
     }
     async Discordlogin(req: FastifyRequest,res: FastifyReply) : Promise<void> {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        const code = req.query?.code;
+        const { code, error }  = req.query;
+        if(error == "access_denied") return res.view('index.ejs', {
+                token: null
+            });
         if(!code) return res.redirect('/oauth2/discord/authorize');
         const response: AxiosResponse  = await axios.post('https://discord.com/api/oauth2/token',
             new URLSearchParams({
@@ -89,10 +92,11 @@ class Oauth2 {
                         const tokendata = await this.db.findOne({userid: data?.id.toString(),exp: data?.exp})
                         const response: AxiosResponse = await axios.get('https://discord.com/api/users/@me', {
                             headers: {
+                                //@ts-ignore
                                 authorization: `Bearer ${tokendata?.accessToken}`
                             }
-                        })
-                        if(!response.data.id) return res.send({code:404, message: "Not found"})
+                        }).catch(() => {return res.status(500).send({code: 500, message: 'Internal server error'})});
+                        if(!response.data?.id) return res.send({code:404, message: "Not found"})
                         res.status(200).send({type: 'discord', data: response.data})
                     }
 
