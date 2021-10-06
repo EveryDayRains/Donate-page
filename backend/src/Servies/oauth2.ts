@@ -20,6 +20,8 @@ class Oauth2 {
             });
         if(!code) return res.redirect('/oauth2/discord/authorize');
         const response: AxiosResponse  = await axios.post('https://discord.com/api/oauth2/token',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
             new URLSearchParams({
                 client_id: process.env.DISCORD_CLIENT_ID,
                 client_secret: process.env.DISCORD_CLIENT_SECRET,
