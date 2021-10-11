@@ -1,0 +1,9 @@
+ {
+  "name": "Donate-page",
+  "version": "1.0.0",
+  "author": "MrLivixx",
+  "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  }
+}
