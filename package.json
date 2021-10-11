@@ -8,5 +8,5 @@
   },
   "scripts": {
     "startandbuild": "cd backend && npm i && tsc --build tsconfig.json && node ./dist/index"
-  },
+  }
 }
