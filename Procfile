@@ -1,1 +1,1 @@
-worker: cd backend && npm startandbuild
+worker: npm run startandbuild
