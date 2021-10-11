@@ -5,5 +5,8 @@
   "license": "MIT",
   "engines": {
     "node": "16.x"
-  }
+  },
+  "scripts": {
+    "startandbuild": "cd backend && npm i && tsc --build tsconfig.json && node ./dist/index"
+  },
 }
