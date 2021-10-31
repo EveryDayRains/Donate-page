@@ -64,9 +64,13 @@
             <div class="form-heading">Способ оплаты:</div>
           </div>
           <div class="donate-buttons">
-            <button @click="CreateBill()" class="form-checkout qiwi"><span class="full">Оплатить с помощью </span>Qiwi</button>
+            <button @click="CreateBill()" class="form-checkout qiwi"><span class="full">Оплатить с помощью </span><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: -9px" width="32" height="32"><g fill="none"><circle cx="16" cy="16" r="16" fill="#FF8C00"/><path fill="#FFF" d="M22.59 19.445c.051.401-.063.556-.19.556s-.305-.155-.495-.465c-.19-.31-.267-.66-.165-.84.063-.117.203-.169.368-.104.33.13.457.633.482.853zm-1.777.88c.393.336.508.723.304 1.008a.664.664 0 0 1-.52.232.896.896 0 0 1-.597-.22c-.355-.31-.457-.827-.229-1.111a.489.489 0 0 1 .407-.181c.203 0 .432.09.635.271zM7 14.894C7 9.981 10.91 6 15.734 6c4.825 0 8.735 3.982 8.735 8.894a9.074 9.074 0 0 1-1.231 4.564c-.026.039-.09.026-.102-.026-.304-2.185-1.612-3.387-3.516-3.749-.166-.026-.191-.13.025-.155.584-.052 1.409-.039 1.84.039.026-.22.039-.453.039-.686 0-3.245-2.59-5.882-5.777-5.882-3.186 0-5.776 2.637-5.776 5.882 0 3.246 2.59 5.883 5.776 5.883h.267a8.078 8.078 0 0 1-.115-1.59c.013-.362.09-.414.242-.13.8 1.41 1.942 2.677 4.177 3.18 1.828.415 3.656.893 5.624 3.44.177.22-.089.452-.292.271-2.006-1.81-3.834-2.405-5.497-2.405-1.867.014-3.136.26-4.419.26C10.91 23.79 7 19.806 7 14.893z"/></g></svg></button>
             <div class="or">или...</div>
-            <button type="submit" @click="CreateBillDA()" class="form-checkout da"><span class="full">Оплатить с помощью </span>DA</button>
+            <button type="submit" @click="CreateBillyoomoney()" class="form-checkout da"><span class="full">Оплатить с помощью </span>
+              <svg style="margin-bottom: -4px" width="32" viewBox="0 0 169 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M108.99 0C75.5725 0 48.9902 26.962 48.9902 60C48.9902 93.4177 75.9523 120 108.99 120C142.028 120 168.99 93.038 168.99 60C168.99 26.962 142.028 0 108.99 0ZM108.99 82.4051C96.8383 82.4051 86.5852 72.1519 86.5852 60C86.5852 47.8481 96.8383 37.5949 108.99 37.5949C121.142 37.5949 131.395 47.8481 131.395 60C131.016 72.1519 121.142 82.4051 108.99 82.4051Z" fill="#8B3FFD"/>
+                <path d="M48.6076 17.4684V104.81H27.3418L0 17.4684H48.6076V17.4684Z" fill="#8B3FFD"/>
+            </svg></button>
           </div>
         </div>
       </div>
@@ -138,7 +142,7 @@
 <script lang="js">
 import socket from 'socket.io-client';
 import Footer from '../components/Footer';
-import {url, dalink, page_title} from '../../config.json';
+import {url, page_title} from '../../config.json';
 import moment from 'moment';
 export default {
   components: {
@@ -161,7 +165,7 @@ export default {
     document.title = page_title;
     if (!localStorage.getItem('token')) window.addEventListener('message', this.receiveMessage, false);
     if (localStorage.getItem('token')) await this.getUserData();
-    const io = socket('wss://'+url)
+    const io = socket('ws://'+url)
 
     io.on('connect', () => {
       console.log('connected');
@@ -188,7 +192,7 @@ export default {
       if (this.sum < 10) return alert('Минимальная сумма пополнения 10 руб.');
       if (this.sum >= 15000) return alert('Максимальная сумма пополнения 10 руб.');
       if (this.comment.length >= 150) return alert('Максимальная длина коментария 150 символов.');
-      const data = await (await fetch(`https://${url}/qiwi/create`, {
+      const data = await (await fetch(`http://${url}/qiwi/create`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token')
@@ -201,20 +205,24 @@ export default {
       if (!data.payUrl) return;
        document.location.href = data.payUrl
     },
-    async CreateBillDA() {
-      const data = await (await fetch(`https://${url}/da/createhash`, {
+    async CreateBillyoomoney() {
+      const data = await (await fetch(`http://${url}/yoomoney/create`, {
         method: 'POST',
         headers: {
-          Authorization: localStorage.getItem('token')
-        }
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          amount: this.sum,
+          comment: this.comment
+        })
       })).json();
-      prompt('После нажатия на "ОК" вы будете перенаправлены на страницу оплаты, пожалуйста обязательно скопируйте код из поля, это нам нужно для того чтобы система смогла отследить что отправили донат именно вы, вы должны в поле "ИМЯ" указать это:', data.hash)
-      document.location.href = dalink;
+      if (!data.url) return;
+      document.location.href = data.url;
     },
     authorizate(type) {
       let d = document.documentElement, h = 700, w = 500;
       const params = `height=${Math.min(h, screen.availHeight)}, width=${Math.min(w, screen.availWidth)}, left=${Math.max(0, ((d.clientWidth - w) / 2 + window.screenX))},top=${Math.max(0, ((d.clientHeight - h) / 2 + window.screenY))}`
-      this.window = window.open(`${encodeURI(`https://${url}/oauth2/${type}/authorize`)}`, '', params);
+      this.window = window.open(`${encodeURI(`http://${url}/oauth2/${type}/authorize`)}`, '', params);
       let checkwindow = setInterval(() => {
         if (!this.window.window && !localStorage.getItem('token')) {
           clearInterval(checkwindow);
@@ -249,8 +257,12 @@ export default {
       if (JSON.parse(message.data.token)) localStorage.setItem('token', JSON.parse(message.data.token));
       else return;
     },
+    logout() {
+      localStorage.removeItem('token');
+      this.logined = false
+    },
     async getUserData() {
-      const info = await fetch('https://'+ url + '/oauth2/user', {
+      const info = await fetch('http://'+ url + '/oauth2/user', {
         method: 'GET',
         headers: {
           'Authorization': localStorage.getItem('token')

@@ -6,10 +6,11 @@ import fastify, {
     RouteOptions
 } from 'fastify';
 import fastifyRateLimit from "fastify-rate-limit";
-import DonationAlertsWatcher from "@/Servies/da";
+import DonationAlertsWatcher from "@/Servies/yoomoney";
 import donations from '@/Modeles/Donations';
 import mongoose, { Model } from 'mongoose';
 import pointOfView from "point-of-view";
+import formBodyPlugin from 'fastify-formbody';
 //@ts-ignore
 import fastifyCors from "fastify-cors";
 import io, { Server } from 'socket.io';
@@ -50,10 +51,6 @@ class ApiWorker {
             console.log('Success connect to MongoDB!');
         });
 
-        //DONATIONALERTS
-        if(process.env.DA_SECRET) { // @ts-ignore
-            await new DonationAlertsWatcher(donations, tokens).init()
-        }
         //SOCKET.IO
         this.io.on('connection', async (socket: Socket) => {
             socket.send('Connected!');
@@ -75,7 +72,8 @@ class ApiWorker {
                 'x-ratelimit-remaining': true,
                 'retry-after': true,
             }
-        })
+        });
+        this.app.register(formBodyPlugin)
 
        this.app.register(fastifyCors, { origin: process.env.CORS_URL })
 

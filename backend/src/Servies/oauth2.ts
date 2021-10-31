@@ -12,16 +12,12 @@ class Oauth2 {
         this.db = db;
     }
     async Discordlogin(req: FastifyRequest,res: FastifyReply) : Promise<void> {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        const { code, error }  = req.query;
+        const { code, error }  = JSON.parse(JSON.stringify(req.query));
         if(error == "access_denied") return res.view('index.ejs', {
                 token: null
             });
         if(!code) return res.redirect('/oauth2/discord/authorize');
         const response: AxiosResponse  = await axios.post('https://discord.com/api/oauth2/token',
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
             new URLSearchParams({
                 client_id: process.env.DISCORD_CLIENT_ID,
                 client_secret: process.env.DISCORD_CLIENT_SECRET,
@@ -58,9 +54,7 @@ class Oauth2 {
             });
     }
     async VKAuthorization(req: FastifyRequest, res: FastifyReply): Promise<void> {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        const code = req.query?.code;
+        const code = JSON.parse(JSON.stringify(req.query))?.code;
         if(!code) return res.redirect('/oauth2/vk/authorize');
         const user: AxiosResponse = await axios.get(`https://oauth.vk.com/access_token?client_id=${process.env.VK_CLIENT_ID}&client_secret=${process.env.VK_CLIENT_SECRET}&redirect_uri=${process.env.VK_REDIRECT_URL}&code=${code}`)
         .catch((x) => {

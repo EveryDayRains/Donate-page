@@ -1,6 +1,6 @@
 import Oauth2 from '@/Servies/oauth2';
 import Qiwi from '@/Servies/qiwi';
-import Da from '@/Servies/da';
+import Yoomoney from '@/Servies/yoomoney';
 import Donations from "@/Modeles/Donations";
 import Tokens from "@/Modeles/Tokens";
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -64,9 +64,16 @@ export = [
     },
     {
         method: 'POST',
-        path: '/da/createhash',
+        path: '/yoomoney/create',
         handler: (req: FastifyRequest, res: FastifyReply) => {
-            new Da(Donations, Tokens)?.createhash(req,res)
+            new Yoomoney(Donations, Tokens)?.createhash(req,res)
+        }
+    },
+    {
+        method: 'POST',
+        path: '/yoomoney/callback',
+        handler: (req: FastifyRequest, res: FastifyReply) => {
+            new Yoomoney(Donations, Tokens)?.RecivePayments(req,res)
         }
     }
 ]

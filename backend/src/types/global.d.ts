@@ -10,7 +10,8 @@ declare namespace NodeJS {
       VK_CLIENT_SECRET: string | undefined;
       VK_REDIRECT_URL: string | undefined;
       VK_API_KEY: string | undefined;
-      JWT_SECRET: string;
+      YOOMONEY_NUMBER: number;
+      YOOMONEY_CALLBACK_SECRET: string;
       DA_SECRET: string | undefined;
       QIWI_SECRET_KEY: string | undefined;
       QIWI_THEME: string | undefined;

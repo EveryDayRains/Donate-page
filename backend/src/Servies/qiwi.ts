@@ -20,9 +20,7 @@ class Qiwi {
         if(!req.headers['x-api-signature-sha256']) return res.status(401).send({code: 401, message:"Unauthorized"});
         const status = this.qiwi.checkNotificationSignature(req.headers['x-api-signature-sha256'].toString(), req.body, process.env.QIWI_SECRET_KEY!)
         if(status) {
-           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-           // @ts-ignore
-           const { customer, billId, amount, customFields } = req.body.bill;
+           const { customer, billId, amount, customFields } = JSON.parse(JSON.stringify(req.body)).bill;
             await this.db.create({
                 id: billId,
                 username: customer.account,
@@ -43,9 +41,7 @@ class Qiwi {
             if (err) return res.code(404).send({code: 404, message: "Not found"});
             else {
                 if(req.body == null) return res.status(400).send({code: 400, message: 'Bad request'})
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                let { comment, amount } = JSON.parse(req.body);
+                let { comment, amount } =  JSON.parse(JSON.stringify(req.body));
                 amount = Number(amount)
                 if(!comment || !amount) return res.status(400).send({code: 400, message: 'Bad request'});
                 if(amount < 10) return res.status(400).send({code: 400, message: 'Bad request'});
