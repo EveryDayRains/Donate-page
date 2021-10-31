@@ -7,7 +7,8 @@
     "node": "16.x"
   },
   "scripts": {
-    "startandbuild": "cd backend && npm i && npx tsc --build tsconfig.json && node ./dist/index"
+    "build": "cd backend && npm i && npx tsc --build tsconfig.json",
+    "start": "node ./backend/dist/index"
   },
   "dependencies": {
     "fastify-formbody": "^5.1.0"
