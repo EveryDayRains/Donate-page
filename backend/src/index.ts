@@ -6,10 +6,10 @@ import fastify, {
     RouteOptions
 } from 'fastify';
 import fastifyRateLimit from "fastify-rate-limit";
-import DonationAlertsWatcher from "@/Servies/yoomoney";
 import donations from '@/Modeles/Donations';
 import mongoose, { Model } from 'mongoose';
 import pointOfView from "point-of-view";
+//@ts-ignore
 import formBodyPlugin from 'fastify-formbody';
 //@ts-ignore
 import fastifyCors from "fastify-cors";
