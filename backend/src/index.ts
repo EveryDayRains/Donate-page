@@ -17,6 +17,7 @@ import io, { Server } from 'socket.io';
 import tokens from '@/Modeles/Tokens';
 import routers from '@/routers';
 import path from 'path';
+//@ts-ignore
 import ejs from 'ejs';
 class ApiWorker {
 
