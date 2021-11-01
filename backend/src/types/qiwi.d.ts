@@ -50,7 +50,7 @@ declare module '@qiwi/bill-payments-node-js-sdk' {
 
         public createPaymentForm (params: CreatePublicFormArguments): Promise<Record<any, any>>
 
-        public createBill(billId: string | number, params: { amount: number; expirationDateTime: string; customFields: { themeCode: string | undefined; comment: string }; currency: string; comment: string; account: string | number }): Promise<Record<any, any>>
+        public createBill(billId: string | number, params: { successUrl?: string; amount: number; expirationDateTime: string; customFields: { themeCode: string | undefined; comment: string }; currency: string; comment: string; account: string | number }): Promise<Record<any, any>>
 
         public getBillInfo (billId: string | number): Promise<Record<any, any>>
 
