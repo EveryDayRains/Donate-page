@@ -15,9 +15,8 @@ class Yoomoney {
     }
    async RecivePayments(req: FastifyRequest, res: FastifyReply): Promise<void> {
        let body = req.body as Yoomoneydata
-       res.send(200);
        if(body.sha1_hash
-            ===
+            !==
             crypto.createHash('sha1')
                 .update(`${body.notification_type}&${body.operation_id}&${body.amount}&${body.currency}&${body.datetime}&${body.sender}&${body.codepro}&${process.env.YOOMONEY_CALLBACK_SECRET}&${body.label}`
                 ).digest('hex')
@@ -67,7 +66,7 @@ class Yoomoney {
                          break;
                      }
                 })
-
+       res.send(200);
     }
     async createhash(req: FastifyRequest, res: FastifyReply): Promise<void> {
         if(!req.headers.authorization) return res.status(401).send({code: 401, message:"Unauthorized"});
