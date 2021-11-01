@@ -52,7 +52,8 @@ class Qiwi {
                         comment: `Пожертвование для MrLivixx. Комментарий ${comment}`,
                         expirationDateTime: this.qiwi.getLifetimeByDay(1),
                         account: data,
-                        customFields: {comment, themeCode: process.env.QIWI_THEME}
+                        customFields: {comment, themeCode: process.env.QIWI_THEME},
+                        successUrl: process.env.CORS_URL
                     }).then(data => {
                         res.status(200).send({payUrl: data.payUrl});
                         console.log(data)
