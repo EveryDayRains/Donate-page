@@ -165,7 +165,7 @@ export default {
     document.title = page_title;
     if (!localStorage.getItem('token')) window.addEventListener('message', this.receiveMessage, false);
     if (localStorage.getItem('token')) await this.getUserData();
-    const io = socket('ws://'+url)
+    const io = socket('wss://'+url)
 
     io.on('connect', () => {
       console.log('connected');
@@ -192,7 +192,7 @@ export default {
       if (this.sum < 10) return alert('Минимальная сумма пополнения 10 руб.');
       if (this.sum >= 15000) return alert('Максимальная сумма пополнения 10 руб.');
       if (this.comment.length >= 150) return alert('Максимальная длина коментария 150 символов.');
-      const data = await (await fetch(`http://${url}/qiwi/create`, {
+      const data = await (await fetch(`https://{url}/qiwi/create`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token')
@@ -206,7 +206,7 @@ export default {
        document.location.href = data.payUrl
     },
     async CreateBillyoomoney() {
-      const data = await (await fetch(`http://${url}/yoomoney/create`, {
+      const data = await (await fetch(`https://{url}/yoomoney/create`, {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -222,7 +222,7 @@ export default {
     authorizate(type) {
       let d = document.documentElement, h = 700, w = 500;
       const params = `height=${Math.min(h, screen.availHeight)}, width=${Math.min(w, screen.availWidth)}, left=${Math.max(0, ((d.clientWidth - w) / 2 + window.screenX))},top=${Math.max(0, ((d.clientHeight - h) / 2 + window.screenY))}`
-      this.window = window.open(`${encodeURI(`http://${url}/oauth2/${type}/authorize`)}`, '', params);
+      this.window = window.open(`${encodeURI(`https://{url}/oauth2/${type}/authorize`)}`, '', params);
       let checkwindow = setInterval(() => {
         if (!this.window.window && !localStorage.getItem('token')) {
           clearInterval(checkwindow);
@@ -262,7 +262,7 @@ export default {
       this.logined = false
     },
     async getUserData() {
-      const info = await fetch('http://'+ url + '/oauth2/user', {
+      const info = await fetch('https://'+ url + '/oauth2/user', {
         method: 'GET',
         headers: {
           'Authorization': localStorage.getItem('token')
