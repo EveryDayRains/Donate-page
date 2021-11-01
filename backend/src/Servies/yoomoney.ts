@@ -91,7 +91,7 @@ class Yoomoney {
                 comment,
                 amount
             });
-            res.send({url: encodeURI(`https://yoomoney.ru/quickpay/confirm.xml?receiver=${process.env.YOOMONEY_NUMBER}&quickpay-form=shop&targets=Пожертвование для MrLivixx&paymentType=SB&sum=${amount}&label=${hash}`)})
+            res.send({url: encodeURI(`https://yoomoney.ru/quickpay/confirm.xml?receiver=${process.env.YOOMONEY_NUMBER}&quickpay-form=shop&targets=Пожертвование для MrLivixx&paymentType=SB&sum=${amount}&label=${hash}&successURL=${process.env.CORS_URL}`)})
         })
     }
 }
