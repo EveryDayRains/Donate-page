@@ -23,7 +23,8 @@ class Yoomoney {
                 ).digest('hex')
         ) return;
             const { withdraw_amount, label, operation_id } = body;
-            if(withdraw_amount < hashes.get(Number(label)).amount) return;
+       if(!hashes.has(Number(label))) return;
+       if(withdraw_amount < hashes.get(Number(label)).amount) return;
             const ReciveDonation = async (username: string, amount: string | number, money: string, message: string) => {
                 console.log(`Новый донат от ${username}! Через систему Yoomoney`);
                 await this.db.create({
