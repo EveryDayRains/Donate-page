@@ -190,7 +190,7 @@ export default {
       if (!this.sum) return alert('Вы не указали сумму!');
       if (!this.comment) return alert('Вы не указали комментарий!');
       if (this.sum < 10) return alert('Минимальная сумма пополнения 10 руб.');
-      if (this.sum >= 15000) return alert('Максимальная сумма пополнения 10 руб.');
+      if (this.sum >= 15000) return alert('Максимальная сумма пополнения 15000 руб.');
       if (this.comment.length >= 150) return alert('Максимальная длина комментария 150 символов.');
       const data = await (await fetch(`https://${url}/qiwi/create`, {
         method: 'POST',
